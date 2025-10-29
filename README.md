@@ -120,8 +120,8 @@ npm -v
 ### 2️⃣ Clonar o Repositório
 
 ```bash
-git clone https://github.com/seu-usuario/quoteflex.git
-cd quoteflex
+git clone https://github.com/marciofeob/4-Projeto-Integrado---Unifeob.git
+cd 4-Projeto-Integrado---Unifeob
 ```
 
 ---
