@@ -1,3 +1,4 @@
+
 # 🧩 Projeto Integrado – UNIFEOB  
 ### Desenvolvimento de Software Corporativo  
 ### Sistema: **QuoteFlex**
@@ -77,20 +78,25 @@ SOURCE ./database/quoteflex.sql;
 
 ```
 📦 quoteflex
-├── 📁 src
-│   ├── main.ts           # Inicialização do Electron + Backend
-│   ├── database.ts       # Conexão com MySQL
-│   ├── routes/           # Rotas da API
-│   ├── models/           # Modelos de dados (TypeScript)
-│   ├── controllers/      # Lógica de negócio
-│   └── views/            # HTML + CSS + Bootstrap
-│
-├── 📁 database
-│   └── quoteflex.sql     # Script de criação do banco
-│
-├── 📄 package.json
-├── 📄 tsconfig.json
-└── 📄 README.md
+├── 📁 dist/                 # Build final do Electron
+├── 📁 renderer/             # Frontend
+│   ├── views/              # Templates HTML
+│   │   └── partials/       # Partials (header, footer, etc)
+│   └── public/             # Arquivos estáticos
+│       ├── css/            # CSS customizado
+│       ├── js/             # Scripts JS do frontend
+│       └── bootstrap/      # Bootstrap offline
+├── 📁 server/               # Backend Node.js
+│   ├── app.js              # Inicialização do servidor
+│   ├── db.js               # Conexão com o MySQL
+│   └── routes/             # Rotas da API
+├── main.ts                 # Arquivo principal do Electron
+├── preload.js              # Script de preload do Electron
+├── package.json
+├── tsconfig.json
+├── package-lock.json
+├── .gitignore
+└── README.md
 ```
 
 ---
@@ -128,82 +134,131 @@ npm install
 
 ---
 
-### 4️⃣ Instalar o Electron
+### 4️⃣ Scripts Automáticos no `package.json`
 
-Instalar globalmente:
+O `package.json` está configurado com os scripts:
 
-```bash
-npm install -g electron
+```json
+{
+  "name": "quoteflex",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "dev": "tsc -w & nodemon server/app.js & electron .",
+    "start": "electron .",
+    "build": "tsc",
+    "package": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^26.0.0",
+    "typescript": "^5.2.0",
+    "nodemon": "^3.0.0",
+    "electron-builder": "^24.6.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.4.0"
+  }
+}
 ```
 
-Ou como dependência local:
+* `npm run dev` → Roda **TypeScript em watch**, backend com **nodemon** e **Electron** juntos.
+* `npm start` → Inicia apenas o **Electron**.
+* `npm run build` → Compila **TypeScript**.
+* `npm run package` → Cria executáveis multiplataforma via **electron-builder**.
 
-```bash
-npm install electron --save-dev
+---
+
+### 5️⃣ Configuração do TypeScript (`tsconfig.json`)
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "sourceMap": true
+  },
+  "include": ["server/**/*.ts", "main.ts"]
+}
 ```
 
 ---
 
-### 5️⃣ Rodar o Projeto
+### 6️⃣ Configuração do Bootstrap Offline
 
-Compilar o TypeScript e iniciar o Electron:
+1. Baixe o Bootstrap na versão desejada: [https://getbootstrap.com](https://getbootstrap.com)
+2. Coloque os arquivos em:
 
-```bash
-npm run build
-npm start
+```
+renderer/public/bootstrap/
 ```
 
-Ou, se configurado no `package.json`:
+3. Referencie nos arquivos HTML:
 
-```bash
-npm run electron
+```html
+<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
+<script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
 ```
 
 ---
 
-## 🔑 Configuração do Banco de Dados
+### 7️⃣ Configuração do Banco de Dados (`server/db.js`)
 
-Edite o arquivo `src/database.ts` com as credenciais do seu MySQL local:
+```javascript
+const mysql = require('mysql2');
 
-```typescript
-import mysql from 'mysql2';
-
-export const connection = mysql.createConnection({
+const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'Admin123*',
   database: 'quoteflex'
 });
+
+module.exports = connection;
 ```
 
 ---
 
 ## 🧪 Testes Locais
 
-✅ Certifique-se de que o **MySQL** está em execução.
-✅ O banco **quoteflex** deve estar criado conforme o script.
-✅ Rode o **Electron** (`npm start`) e acesse a interface do sistema.
+✅ Certifique-se que o MySQL está rodando.
+✅ O banco `quoteflex` deve estar criado.
+✅ Rode o comando `npm run dev` para iniciar **Electron + backend + watch TypeScript**.
 
 ---
 
 ## 📊 Integração e Segurança
 
-* 🔐 **Segurança:** Controle de acesso com níveis de permissão (`tp_acesso_usu`).
-* 🧾 **Auditoria:** Log de operações implementado no backend Node.js.
-* 🌐 **Integração futura:** APIs REST e conexão com dashboards no Power BI.
+* 🔐 Controle de acesso por níveis (`tp_acesso_usu`).
+* 🧾 Log de auditoria no backend.
+* 🌐 Preparado para integração com **APIs REST** e dashboards Power BI.
 
 ---
 
 ## 📦 Build Final (Multiplataforma)
 
-Gerar executável do sistema:
+Gerar executáveis:
 
 ```bash
 npm run build
-npx electron-builder
+npm run package
 ```
 
-Isso gera binários para **Windows**, **Linux** ou **macOS**, conforme o sistema operacional utilizado no build.
+Arquivos finais estarão na pasta `dist/`.
+
+---
+
+## 📝 Boas práticas adotadas
+
+* Estrutura modular: **server**, **renderer**, **main.ts**, **preload.js**
+* **Partials** para evitar repetição de HTML
+* Bootstrap offline para independência de CDN
+* Scripts automatizados (`dev`, `start`, `build`, `package`)
+* TypeScript + Node.js + Electron integrados
+* `.gitignore` configurado para arquivos de sistema e `node_modules`
 
 ---
 
