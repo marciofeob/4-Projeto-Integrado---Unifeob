@@ -1,10 +1,5 @@
-const mysql = require('mysql2');
-
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'Admin123*',
-  database: 'quoteflex'
-});
-
-module.exports = connection;
+module.exports = {
+  users: [
+    { id: 1, username: 'unifeob', password: 'Admin123*', name: 'Administrador' },
+  ]
+};

@@ -1,7 +1,7 @@
 {
   "name": "quoteflex",
   "version": "1.0.0",
-  "main": "main.js",
+  "main": "dist/main.js",
   "scripts": {
     "dev": "tsc -w & nodemon server/app.js & electron .",
     "start": "electron .",

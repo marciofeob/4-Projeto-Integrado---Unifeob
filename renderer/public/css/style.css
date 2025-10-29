@@ -1,0 +1,30 @@
+/* ----------- Estilos Globais ----------- */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f6fa;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+/* ----------- Tela de Login ----------- */
+.bg-login {
+  background: linear-gradient(135deg, #0d6efd 0%, #1e90ff 100%);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1.2rem;
+  width: 380px;
+}
+
+/* ----------- Navbar ----------- */
+.navbar {
+  border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+}
