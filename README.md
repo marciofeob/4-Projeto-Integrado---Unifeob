@@ -80,18 +80,18 @@ SOURCE ./database/quoteflex.sql;
 📦 quoteflex
 ├── 📁 dist/                 # Build final do Electron
 ├── 📁 renderer/             # Frontend
-│   ├── views/              # Templates HTML
-│   │   └── partials/       # Partials (header, footer, etc)
-│   └── public/             # Arquivos estáticos
-│       ├── css/            # CSS customizado
-│       ├── js/             # Scripts JS do frontend
-│       └── bootstrap/      # Bootstrap offline
+│   ├── views/               # Templates HTML
+│   │   └── partials/        # Partials (header, footer, etc)
+│   └── public/              # Arquivos estáticos
+│       ├── css/             # CSS customizado
+│       ├── js/              # Scripts JS do frontend
+│       └── bootstrap/       # Bootstrap offline
 ├── 📁 server/               # Backend Node.js
-│   ├── app.js              # Inicialização do servidor
-│   ├── db.js               # Conexão com o MySQL
-│   └── routes/             # Rotas da API
-├── main.ts                 # Arquivo principal do Electron
-├── preload.js              # Script de preload do Electron
+│   ├── app.js               # Inicialização do servidor
+│   ├── db.js                # Conexão com o MySQL
+│   └── routes/              # Rotas da API
+├── main.ts                  # Arquivo principal do Electron
+├── preload.js               # Script de preload do Electron
 ├── package.json
 ├── tsconfig.json
 ├── package-lock.json
