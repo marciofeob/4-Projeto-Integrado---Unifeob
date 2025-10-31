@@ -1,5 +1,4 @@
 const {app, BrowserWindow} = require('electron')
-const { viewClientes } = require('./backend/server/db')
 
 function createWindow(){
     const win = new BrowserWindow({
@@ -10,6 +9,6 @@ function createWindow(){
 }
 
 app.whenReady().then(()=>{
-    require('./backend/server/app')
+    require('./server/app')
     createWindow()
 })
