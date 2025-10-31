@@ -134,25 +134,7 @@ npm install
 
 ---
 
-### 4️⃣ Configuração do Bootstrap Offline
-
-1. Baixe o Bootstrap na versão desejada: [https://getbootstrap.com](https://getbootstrap.com)
-2. Coloque os arquivos em:
-
-```
-renderer/public/bootstrap/
-```
-
-3. Referencie nos arquivos HTML:
-
-```html
-<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
-<script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
-```
-
----
-
-### 5️⃣ Configuração do Banco de Dados (`server/db.js`)
+### 4️⃣ Configuração do Banco de Dados (`server/db.js`)
 
 ```javascript
 const mysql = require('mysql2');
@@ -200,8 +182,8 @@ Arquivos finais estarão na pasta `dist/`.
 
 ## 📝 Boas práticas adotadas
 
-* Estrutura modular: **server**, **renderer**, **main.ts**, **preload.js**
-* **Partials** para evitar repetição de HTML
+* Estrutura modular: **server**, **renderer**, **main.js**
+* **Partials** para evitar repetição
 * Bootstrap offline para independência de CDN
 * Scripts automatizados (`dev`, `start`, `build`, `package`)
 * TypeScript + Node.js + Electron integrados
