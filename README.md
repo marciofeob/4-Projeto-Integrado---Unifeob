@@ -4,8 +4,6 @@
 ### Sistema: **QuoteFlex**
 
 ---
-![Uploading image.png…]()
----
 
 ## 👨‍💻 Equipe de Desenvolvimento
 
