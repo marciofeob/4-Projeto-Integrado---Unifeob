@@ -134,60 +134,7 @@ npm install
 
 ---
 
-### 4️⃣ Scripts Automáticos no `package.json`
-
-O `package.json` está configurado com os scripts:
-
-```json
-{
-  "name": "quoteflex",
-  "version": "1.0.0",
-  "main": "main.js",
-  "scripts": {
-    "dev": "tsc -w & nodemon server/app.js & electron .",
-    "start": "electron .",
-    "build": "tsc",
-    "package": "electron-builder"
-  },
-  "devDependencies": {
-    "electron": "^26.0.0",
-    "typescript": "^5.2.0",
-    "nodemon": "^3.0.0",
-    "electron-builder": "^24.6.0"
-  },
-  "dependencies": {
-    "express": "^4.18.2",
-    "mysql2": "^3.4.0"
-  }
-}
-```
-
-* `npm run dev` → Roda **TypeScript em watch**, backend com **nodemon** e **Electron** juntos.
-* `npm start` → Inicia apenas o **Electron**.
-* `npm run build` → Compila **TypeScript**.
-* `npm run package` → Cria executáveis multiplataforma via **electron-builder**.
-
----
-
-### 5️⃣ Configuração do TypeScript (`tsconfig.json`)
-
-```json
-{
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "commonjs",
-    "outDir": "dist",
-    "strict": true,
-    "esModuleInterop": true,
-    "sourceMap": true
-  },
-  "include": ["server/**/*.ts", "main.ts"]
-}
-```
-
----
-
-### 6️⃣ Configuração do Bootstrap Offline
+### 4️⃣ Configuração do Bootstrap Offline
 
 1. Baixe o Bootstrap na versão desejada: [https://getbootstrap.com](https://getbootstrap.com)
 2. Coloque os arquivos em:
@@ -205,7 +152,7 @@ renderer/public/bootstrap/
 
 ---
 
-### 7️⃣ Configuração do Banco de Dados (`server/db.js`)
+### 5️⃣ Configuração do Banco de Dados (`server/db.js`)
 
 ```javascript
 const mysql = require('mysql2');
