@@ -78,24 +78,24 @@ SOURCE ./database/quoteflex.sql;
 
 ```
 📦 quoteflex
-├── 📁 dist/                 # Build final do Electron
-├── 📁 renderer/             # Frontend
-│   ├── views/               # Templates HTML
-│   │   └── partials/        # Partials (header, footer, etc)
-│   └── public/              # Arquivos estáticos
-│       ├── css/             # CSS customizado
-│       ├── js/              # Scripts JS do frontend
-│       └── bootstrap/       # Bootstrap offline
-├── 📁 server/               # Backend Node.js
-│   ├── app.js               # Inicialização do servidor
-│   ├── db.js                # Conexão com o MySQL
-│   └── routes/              # Rotas da API
-├── main.ts                  # Arquivo principal do Electron
-├── preload.js               # Script de preload do Electron
-├── package.json
-├── tsconfig.json
-├── package-lock.json
+├── 📁 database/ # Banco de dados
+├── 📁 node_modules/ # Dependências do Node.js
+├── 📁 renderer/ # Frontend
+│ ├── public/ # Arquivos estáticos
+│ │ ├── css/ # CSS customizado
+│ │ ├── img/ # Imagens
+│ │ └── js/ # Scripts JS do frontend
+│ └── views/ # Templates EJS
+│ └── partials/ # Partials (header, footer, etc)
+├── 📁 server/ # Backend Node.js
+│ ├── middleware/ # Middlewares
+│ ├── routers/ # Rotas da API
+│ ├── app.js # Inicialização do servidor
+│ └── db.js # Conexão com o MySQL
+├── main.js # Arquivo principal
 ├── .gitignore
+├── package-lock.json
+├── package.json
 └── README.md
 ```
 
@@ -134,78 +134,7 @@ npm install
 
 ---
 
-### 4️⃣ Scripts Automáticos no `package.json`
-
-O `package.json` está configurado com os scripts:
-
-```json
-{
-  "name": "quoteflex",
-  "version": "1.0.0",
-  "main": "main.js",
-  "scripts": {
-    "dev": "tsc -w & nodemon server/app.js & electron .",
-    "start": "electron .",
-    "build": "tsc",
-    "package": "electron-builder"
-  },
-  "devDependencies": {
-    "electron": "^26.0.0",
-    "typescript": "^5.2.0",
-    "nodemon": "^3.0.0",
-    "electron-builder": "^24.6.0"
-  },
-  "dependencies": {
-    "express": "^4.18.2",
-    "mysql2": "^3.4.0"
-  }
-}
-```
-
-* `npm run dev` → Roda **TypeScript em watch**, backend com **nodemon** e **Electron** juntos.
-* `npm start` → Inicia apenas o **Electron**.
-* `npm run build` → Compila **TypeScript**.
-* `npm run package` → Cria executáveis multiplataforma via **electron-builder**.
-
----
-
-### 5️⃣ Configuração do TypeScript (`tsconfig.json`)
-
-```json
-{
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "commonjs",
-    "outDir": "dist",
-    "strict": true,
-    "esModuleInterop": true,
-    "sourceMap": true
-  },
-  "include": ["server/**/*.ts", "main.ts"]
-}
-```
-
----
-
-### 6️⃣ Configuração do Bootstrap Offline
-
-1. Baixe o Bootstrap na versão desejada: [https://getbootstrap.com](https://getbootstrap.com)
-2. Coloque os arquivos em:
-
-```
-renderer/public/bootstrap/
-```
-
-3. Referencie nos arquivos HTML:
-
-```html
-<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
-<script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
-```
-
----
-
-### 7️⃣ Configuração do Banco de Dados (`server/db.js`)
+### 4️⃣ Configuração do Banco de Dados (`server/db.js`)
 
 ```javascript
 const mysql = require('mysql2');
@@ -253,8 +182,8 @@ Arquivos finais estarão na pasta `dist/`.
 
 ## 📝 Boas práticas adotadas
 
-* Estrutura modular: **server**, **renderer**, **main.ts**, **preload.js**
-* **Partials** para evitar repetição de HTML
+* Estrutura modular: **server**, **renderer**, **main.js**
+* **Partials** para evitar repetição
 * Bootstrap offline para independência de CDN
 * Scripts automatizados (`dev`, `start`, `build`, `package`)
 * TypeScript + Node.js + Electron integrados
