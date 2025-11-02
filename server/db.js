@@ -1,9 +1,9 @@
 const mysql = require('mysql2')
 
 const conexao = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
+    host: 'sj.ddns.net',
+    user: 'unifeob',
+    password: 'Admin123*',
     database: 'quoteflex'
 })
 
