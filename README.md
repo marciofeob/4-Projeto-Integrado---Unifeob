@@ -34,7 +34,7 @@
 
 ---
 
-## 🧠 Objetivo do Projeto
+## Objetivo do Projeto
 
 Desenvolver uma aplicação **corporativa multiplataforma** para gestão e controle de **cotações e apólices de seguros**, utilizando:
 
@@ -204,7 +204,7 @@ npm run dist
 
 O instalador será criado em:
 
-`dist/GestaoUsuario Setup 1.0.0.exe`
+`dist/QuoteFlex Setup 1.0.0.exe`
 
 ---
 
