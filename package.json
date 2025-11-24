@@ -1,20 +1,34 @@
 {
-  "name": "app_gestaousuario",
+  "name": "quoteflex",
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
+    "dist": "electron-builder",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "grupo3",
   "license": "ISC",
-  "description": "",
+  "description": "Sistema de Gestão de Usuários",
+  "build": {
+    "appId": "com.grupo3.gestaousuario",
+    "productName": "Grupo3",
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+    "directories": {
+      "output": "dist"
+    }
+  },
+  "devDependencies": {
+    "electron": "^38.1.0",
+    "electron-builder": "^26.0.12"
+  },
   "dependencies": {
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
-    "electron": "^38.1.0",
-    "electron-builder": "^26.0.12",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
     "multer": "^2.0.2",

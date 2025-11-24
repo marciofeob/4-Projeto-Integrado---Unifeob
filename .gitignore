@@ -2,17 +2,11 @@
 /node_modules
 
 # Ignora logs de erro
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # Arquivos de sistema
-.DS_Store
-Thumbs.db
+
 
 # Arquivos de build 
-/dist
-/build
 
-# Arquivos de ambiente (MUITO IMPORTANTE PERIGO DE ROUBAREM O CORSA)
-.env
+
+# Arquivos de ambiente (MUITO IMPORTANTE PERIGO DE ROUBAREM A MAKITA)

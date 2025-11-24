@@ -1,4 +1,5 @@
 
+````markdown
 # 🧩 Projeto Integrado – UNIFEOB  
 ### Desenvolvimento de Software Corporativo  
 ### Sistema: **QuoteFlex**
@@ -32,26 +33,19 @@
 
 ## 🧠 Objetivo do Projeto
 
-Desenvolver uma aplicação **corporativa multiplataforma** para gestão e controle de **cotações e apólices de seguros**, utilizando **Node.js**, **Electron**, **TypeScript**, **HTML**, **CSS** e **Bootstrap**, com banco de dados **MySQL**.
+Desenvolver uma aplicação **corporativa multiplataforma** para gestão e controle de **cotações e apólices de seguros**, utilizando **Node.js**, **Electron**, **JavaScript**, **HTML**, **CSS** e **Bootstrap**, com banco de dados **MySQL**.
 
-O sistema foi projetado para rodar em **qualquer sistema operacional (Windows, Linux e macOS)** através do uso do **Electron**.
+O sistema foi projetado para rodar em **Windows** através do uso do **Electron**.
 
 ---
 
 ## 🗃️ Banco de Dados – `quoteflex`
 
 O banco de dados foi modelado no **MySQL Workbench** e exportado via script `.sql`.  
-O esquema principal é `quoteflex`, contendo as principais tabelas de cadastro, relacionamento e operações do sistema (empresa, cliente, usuário, veículo, apólice, orçamentos etc).
+O esquema principal é `quoteflex`, contendo as principais tabelas de cadastro, relacionamento e operações do sistema.
 
-📄 O script completo de criação do banco está em:
-
-```
-
-/database/quoteflex.sql
-
-````
-
-### Criando o banco localmente:
+### 1. Criando o Banco e Tabelas
+Execute o script principal no seu cliente MySQL (Workbench/DBeaver):
 
 ```sql
 CREATE DATABASE quoteflex;
@@ -59,141 +53,136 @@ USE quoteflex;
 SOURCE ./database/quoteflex.sql;
 ````
 
----
+### 2\. Criando o Usuário Admin
+
+Para acessar o sistema, é necessário criar o usuário administrador e as permissões. Execute o script abaixo após criar as tabelas:
+
+```sql
+USE quoteflex;
+
+-- Cria níveis de acesso e função
+INSERT INTO tp_acesso_usu (descr, cd, sit) SELECT 'admin', 1, 1 FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM tp_acesso_usu WHERE descr = 'admin');
+INSERT INTO funcao_usu (descr, cd) SELECT 'Administrador', 'ADM' FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM funcao_usu WHERE cd = 'ADM');
+
+-- Cria usuário Admin (Senha: 123)
+INSERT INTO usuario (nome, cd_usu_bd, senha, sit, tpacessusu_id, funcaousu_id)
+SELECT 'Super Administrador', 'admin', '202cb962ac59075b964b07152d234b70', 1, 
+(SELECT tpacessusu_id FROM tp_acesso_usu WHERE descr = 'admin' LIMIT 1),
+(SELECT funcaousu_id FROM funcao_usu WHERE cd = 'ADM' LIMIT 1)
+FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM usuario WHERE cd_usu_bd = 'admin');
+```
+
+🔑 **Login Padrão:**
+
+  * **Usuário:** `admin`
+  * **Senha:** `123`
+
+-----
 
 ## ⚙️ Tecnologias Utilizadas
 
 | Camada                     | Tecnologia             |
 | -------------------------- | ---------------------- |
-| **Banco de Dados**         | MySQL                  |
-| **Backend**                | Node.js + TypeScript   |
-| **Frontend**               | HTML5, CSS3, Bootstrap |
-| **Desktop Runtime**        | Electron               |
+| **Banco de Dados** | MySQL                  |
+| **Backend** | Node.js + Express      |
+| **Frontend** | HTML5, CSS3, EJS       |
+| **Desktop Runtime** | Electron               |
 | **IDE de Desenvolvimento** | Visual Studio Code     |
-| **Controle de Versão**     | Git / GitHub           |
+| **Controle de Versão** | Git / GitHub           |
 
----
+-----
 
 ## 🧩 Estrutura do Projeto
 
 ```
 📦 quoteflex
-├── 📁 database/ # Banco de dados
-├── 📁 node_modules/ # Dependências do Node.js
-├── 📁 renderer/ # Frontend
-│ ├── public/ # Arquivos estáticos
-│ │ ├── css/ # CSS customizado
-│ │ ├── img/ # Imagens
-│ │ └── js/ # Scripts JS do frontend
-│ └── views/ # Templates EJS
-│ └── partials/ # Partials (header, footer, etc)
-├── 📁 server/ # Backend Node.js
-│ ├── middleware/ # Middlewares
-│ ├── routers/ # Rotas da API
-│ ├── app.js # Inicialização do servidor
-│ └── db.js # Conexão com o MySQL
-├── main.js # Arquivo principal
-├── .gitignore
-├── package-lock.json
-├── package.json
+├── 📁 database/           # Scripts SQL e Modelagem
+├── 📁 node_modules/       # Dependências do Node.js
+├── 📁 renderer/           # Frontend (Interface)
+│   ├── public/            # Arquivos estáticos (CSS, Imagens, JS)
+│   └── views/             # Templates EJS (HTML dinâmico)
+├── 📁 server/             # Backend Node.js
+│   ├── .env               # Arquivo de Configuração (CRIAR MANUALMENTE)
+│   ├── db.js              # Conexão com o Banco
+│   ├── app.js             # Servidor Express
+│   └── routers/           # Rotas da API
+├── main.js                # Processo Principal do Electron
+├── package.json           # Dependências e Scripts
 └── README.md
 ```
 
----
+-----
 
-## 🖥️ Configuração do Ambiente
+## 🖥️ Instalação e Configuração
 
-### 1️⃣ Instalar o Node.js
+### 1️⃣ Pré-requisitos
 
-Baixe e instale o Node.js (versão **LTS**) a partir de:
-👉 [https://nodejs.org/](https://nodejs.org/)
+  * Node.js (Versão LTS) instalado: [https://nodejs.org/](https://nodejs.org/)
+  * MySQL Server rodando.
 
-Verifique a instalação:
+### 2️⃣ Clonar e Instalar
 
-```bash
-node -v
-npm -v
-```
-
----
-
-### 2️⃣ Clonar o Repositório
+Abra o terminal na pasta onde deseja baixar o projeto:
 
 ```bash
-git clone https://github.com/marciofeob/4-Projeto-Integrado---Unifeob.git
+git clone [https://github.com/marciofeob/4-Projeto-Integrado---Unifeob.git](https://github.com/marciofeob/4-Projeto-Integrado---Unifeob.git)
 cd 4-Projeto-Integrado---Unifeob
-```
-
----
-
-### 3️⃣ Instalar Dependências
-
-```bash
 npm install
 ```
 
----
+### 3️⃣ Configurando as Variáveis de Ambiente (.env)
 
-### 4️⃣ Configuração do Banco de Dados (`server/db.js`)
+O sistema exige um arquivo de configuração para conectar ao banco.
 
-```javascript
-const mysql = require('mysql2');
+1.  Navegue até a pasta `server/`.
+2.  Crie um arquivo chamado `.env` (sem nome antes do ponto).
+3.  Preencha com os dados do **seu** MySQL local:
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'Admin123*',
-  database: 'quoteflex'
-});
+<!-- end list -->
 
-module.exports = connection;
+```env
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=sua_senha_do_mysql
+DB_DATABASE=quoteflex
 ```
 
----
+-----
 
-## 🧪 Testes Locais
+## 🚀 Como Rodar o Projeto
 
-✅ Certifique-se que o MySQL está rodando.
-✅ O banco `quoteflex` deve estar criado.
-✅ Rode o comando `npm run dev` para iniciar **Electron + backend + watch TypeScript**.
-
----
-
-## 📊 Integração e Segurança
-
-* 🔐 Controle de acesso por níveis (`tp_acesso_usu`).
-* 🧾 Log de auditoria no backend.
-* 🌐 Preparado para integração com **APIs REST** e dashboards Power BI.
-
----
-
-## 📦 Build Final (Multiplataforma)
-
-Gerar executáveis:
+Após configurar o banco e o arquivo `.env`, execute o comando abaixo na raiz do projeto:
 
 ```bash
-npm run build
-npm run package
+npm start
 ```
 
-Arquivos finais estarão na pasta `dist/`.
+*Isso iniciará o Electron e o servidor backend simultaneamente.*
 
----
+-----
 
-## 📝 Boas práticas adotadas
+## 📦 Gerando o Executável (Windows .exe)
 
-* Estrutura modular: **server**, **renderer**, **main.js**
-* **Partials** para evitar repetição
-* Bootstrap offline para independência de CDN
-* Scripts automatizados (`dev`, `start`, `build`, `package`)
-* TypeScript + Node.js + Electron integrados
-* `.gitignore` configurado para arquivos de sistema e `node_modules`
+Para criar o instalador final do software:
 
----
+1.  Abra o terminal como **Administrador** (PowerShell ou CMD).
+2.  Execute o comando:
 
-## 🧾 Licença
+<!-- end list -->
+
+```bash
+npm run dist
+```
+
+O instalador será gerado na pasta:
+📂 `dist/GestaoUsuario Setup 1.0.0.exe`
+
+-----
+
+## 📝 Licença
 
 Projeto acadêmico desenvolvido para o **Projeto Integrado – UNIFEOB**.
 Uso autorizado apenas para fins **educacionais**.
 
----
+```
+```
