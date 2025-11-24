@@ -1,7 +1,7 @@
 
 ---
 
-# 🧩 Projeto Integrado – UNIFEOB
+# Projeto Integrado – UNIFEOB
 
 ### Desenvolvimento de Software Corporativo
 
@@ -9,7 +9,7 @@
 
 ---
 
-## 👨‍💻 Equipe de Desenvolvimento
+## Equipe de Desenvolvimento
 
 | Nome                            | RA       |
 | ------------------------------- | -------- |
@@ -22,7 +22,7 @@
 
 ---
 
-## 🎓 Professores Orientadores
+## Professores Orientadores
 
 | Disciplina                                  | Professor                      |
 | ------------------------------------------- | ------------------------------ |
@@ -50,14 +50,14 @@ O sistema foi projetado para rodar em **Windows**, utilizando o **Electron** par
 
 ---
 
-## 🗃️ Banco de Dados – `quoteflex`
+## Banco de Dados – `quoteflex`
 
 O banco foi modelado no **MySQL Workbench** e exportado como script `.sql`.
 O esquema principal se chama **quoteflex**, contendo tabelas de cadastros, relacionamentos e operações gerais.
 
 ---
 
-### 🔧 1. Criando o Banco e as Tabelas
+### 1. Criando o Banco e as Tabelas
 
 Execute o script principal no MySQL (Workbench, DBeaver ou CLI):
 
@@ -69,7 +69,7 @@ SOURCE ./database/quoteflex.sql;
 
 ---
 
-### 🔐 2. Criando o Usuário Admin
+### 2. Criando o Usuário Admin
 
 Após criar as tabelas, execute o script a seguir para gerar o usuário administrador:
 
@@ -96,7 +96,7 @@ FROM DUAL
 WHERE NOT EXISTS (SELECT 1 FROM usuario WHERE cd_usu_bd = 'admin');
 ```
 
-### 🔑 Login Padrão
+### Login Padrão
 
 | Campo        | Valor   |
 | ------------ | ------- |
@@ -105,7 +105,7 @@ WHERE NOT EXISTS (SELECT 1 FROM usuario WHERE cd_usu_bd = 'admin');
 
 ---
 
-## ⚙️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 | Camada                 | Tecnologia         |
 | ---------------------- | ------------------ |
@@ -118,10 +118,10 @@ WHERE NOT EXISTS (SELECT 1 FROM usuario WHERE cd_usu_bd = 'admin');
 
 ---
 
-## 🧩 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
-📦 quoteflex
+ quoteflex
 ├── 📁 database/           # Scripts SQL e Modelagem
 ├── 📁 node_modules/       # Dependências do Node.js
 ├── 📁 renderer/           # Frontend (Interface)
@@ -139,16 +139,16 @@ WHERE NOT EXISTS (SELECT 1 FROM usuario WHERE cd_usu_bd = 'admin');
 
 ---
 
-## 🖥️ Instalação e Configuração
+## Instalação e Configuração
 
-### 1️⃣ Pré-requisitos
+### Pré-requisitos
 
 * Node.js (versão LTS) → [https://nodejs.org/](https://nodejs.org/)
 * MySQL Server instalado e ativo
 
 ---
 
-### 2️⃣ Clonar o Repositório e Instalar Dependências
+### Clonar o Repositório e Instalar Dependências
 
 ```bash
 git clone https://github.com/marciofeob/4-Projeto-Integrado---Unifeob.git
@@ -158,7 +158,7 @@ npm install
 
 ---
 
-### 3️⃣ Configurando o Arquivo `.env`
+### Configurando o Arquivo `.env`
 
 O sistema exige um arquivo de ambiente dentro da pasta `server/`.
 
@@ -179,7 +179,7 @@ DB_DATABASE=quoteflex
 
 ---
 
-## 🚀 Como Rodar o Projeto
+## Como Rodar o Projeto
 
 Na raiz do projeto, execute:
 
@@ -191,7 +191,7 @@ Isso iniciará **simultaneamente** o servidor Node.js e o Electron.
 
 ---
 
-## 📦 Gerando o Executável (Windows .exe)
+## Gerando o Executável (Windows .exe)
 
 Para gerar o instalador final:
 
@@ -204,11 +204,11 @@ npm run dist
 
 O instalador será criado em:
 
-📂 `dist/GestaoUsuario Setup 1.0.0.exe`
+`dist/GestaoUsuario Setup 1.0.0.exe`
 
 ---
 
-## 📝 Licença
+## Licença
 
 Projeto acadêmico desenvolvido para o **Projeto Integrado – UNIFEOB**.
 Uso autorizado exclusivamente para fins **educacionais**.
